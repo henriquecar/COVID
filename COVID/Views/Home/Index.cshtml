@@ -1,0 +1,42 @@
+﻿@model List<COVID.Entities.CovidCountry>
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>COVID 19</h1>
+    <p class="lead">Ranking dos países com maior número de casos ativos.</p>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <h2>Número total de casos de COVID</h2>
+        @if (Model != null && Model.Count > 0)
+        {
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Posição</th>
+                        <th>País</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int i = 0; i < Model.Count; i++)
+                    {
+                        var c = Model[i];
+                        <tr>
+                            <td>@(c.Position)º</td>
+                            <td>@c.Country</td>
+                            <td>@c.Total</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <span>Não existem dados suficientes para gerar esse relatório.</span>
+        }
+    </div>
+</div>
